@@ -20,3 +20,19 @@ export const __onViewWelcomeScreen = async ({}) => {
     console.log('__onViewWelcomeScreen:err', error);
   }
 };
+
+export const __checkWelcomeScreenStatus = async ({}) => {
+  try {
+    const firstLaunchStatus = JSON.parse(
+      await AsyncStorage.getItem(IS_FIRSRT_LAUNCH),
+    );
+    reduxStore.dispatch(
+      authRtkSlice.actions.setFirstLaunchStatus({
+        isFirstLaunch: firstLaunchStatus,
+      }),
+    );
+    return firstLaunchStatus;
+  } catch (error) {
+    console.log('__checkWelcomeScreenStatus:err', error);
+  }
+};
