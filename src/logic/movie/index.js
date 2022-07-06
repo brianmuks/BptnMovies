@@ -1,3 +1,4 @@
+import {useSelector} from 'react-redux';
 import {THEMOVIEDB_IMAGE_BASE_URL} from '../../config';
 import movieRtkSlice from '../../redux/reducers/movie';
 import reduxStore from '../../redux/store';
@@ -34,3 +35,12 @@ export const __unLikeMovie = async ({movieId, movie}) => {
 
 export const __getMovieImageUrl = ({imagePath}) =>
   `${THEMOVIEDB_IMAGE_BASE_URL}${imagePath}`;
+
+export const __getLikedMovies = ({}) => {
+  // let {likedMoviesIds, movies} = reduxStore.getState().movieReducer;
+  let {likedMoviesIds, movies} = useSelector(state => state.movieReducer);
+
+  likedMoviesIds = Object.keys({...likedMoviesIds});
+
+  return movies.filter(movie => likedMoviesIds.includes(movie.id));
+};

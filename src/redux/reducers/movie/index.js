@@ -19,7 +19,7 @@ const movieRtkSlice = createSlice({
         ...state,
         likedMoviesIds: {
           ...state.likedMoviesIds,
-          [action.payload.movieId]: action.payload.movie,
+          [`${action.payload.movieId}`]: action.payload.movie,
         },
       };
     },

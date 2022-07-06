@@ -6,8 +6,10 @@ import Icon from 'react-native-vector-icons/AntDesign';
 
 import MovieOverView from './movieOverView';
 
-const MovieListView = ({}) => {
-  const {movies} = useSelector(state => state.movieReducer);
+const MovieListView = ({movies}) => {
+  const rdxMovieData = useSelector(state => state.movieReducer);
+
+  movies = movies || rdxMovieData.movies;
 
   console.log('movies:', movies);
 

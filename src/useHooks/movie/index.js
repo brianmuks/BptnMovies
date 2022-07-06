@@ -39,8 +39,13 @@ const UseFetchMovies = ({}) => {
 };
 export default UseFetchMovies;
 
-export const UseLikedMovie = ({movie}) => {
-  const {likedMoviesIds} = useSelector(state => state.movieReducer);
+export const UseLikedMovie = ({movie = null}) => {
+  let {likedMoviesIds} = useSelector(state => state.movieReducer);
+  const likedMovies = Object.values(likedMoviesIds);
 
-  return {isMovieLiked: likedMoviesIds[movie.id] ? true : false};
+  return {
+    likedMoviesIds,
+    likedMovies,
+    isMovieLiked: movie ? (likedMoviesIds[movie.id] ? true : false) : null,
+  };
 };
