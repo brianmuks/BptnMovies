@@ -1,0 +1,2 @@
+export const IS_ACCOUNT_OPENED = 'IS_ACCOUNT_OPENED';
+export const IS_FIRSRT_LAUNCH = 'IS_FIRSRT_LAUNCH';
