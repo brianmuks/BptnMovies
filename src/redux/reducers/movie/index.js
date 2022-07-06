@@ -3,14 +3,33 @@ import {createSlice} from '@reduxjs/toolkit';
 const movieRtkSlice = createSlice({
   name: 'movieRtkSlice',
   initialState: {
-    isProcessing: false,
+    movies: [],
+    likedMoviesIds: {},
   },
 
   reducers: {
-    toggleIsProcessing: (state, action) => {
+    setMovies: (state, action) => {
       return {
         ...state,
-        isProcessing: !state.isProcessing,
+        movies: action.payload.movies,
+      };
+    },
+    likeMovie: (state, action) => {
+      return {
+        ...state,
+        likedMoviesIds: {
+          ...state.likedMoviesIds,
+          [`${action.payload.movieId}`]: action.payload.movie,
+        },
+      };
+    },
+    unLikeMovie: (state, action) => {
+      let newLikeMovies = {...state.likedMoviesIds};
+      delete newLikeMovies[action.payload.movieId];
+
+      return {
+        ...state,
+        likedMoviesIds: newLikeMovies,
       };
     },
   },
