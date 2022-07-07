@@ -5,10 +5,11 @@ import {useWindowDimensions, View} from 'react-native';
 import {Title} from 'react-native-paper';
 import UseFetchMovies from '../../useHooks/movie';
 import MovieMainView from '../../components/movie';
+import MovieDetailsScreen from '../movie/eventDetails';
 
 const Stack = createNativeStackNavigator(); // Stack contains Screen & Navigator properties
 
-export const HomeView = ({}) => {
+export const HomeView = ({navigation}) => {
   const {height, width} = useWindowDimensions();
   const {movies, isError, isLoading} = UseFetchMovies({});
 
@@ -19,7 +20,7 @@ export const HomeView = ({}) => {
           BPTN Movies -Now Showing
         </Title>
 
-        <MovieMainView />
+        <MovieMainView navigation={navigation} />
       </View>
     </React.Fragment>
   );

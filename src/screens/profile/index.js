@@ -11,7 +11,7 @@ export const ProfileView = ({}) => {
 
   return (
     <React.Fragment>
-      <Title>ProfileScreen</Title>
+      <Title style={{color: 'gray', textAlign: 'center'}}>ProfileScreen</Title>
     </React.Fragment>
   );
 };

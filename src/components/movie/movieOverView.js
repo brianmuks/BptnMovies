@@ -9,11 +9,11 @@ import {
 } from '../../logic/movie';
 import {PRIMARY_COLOR} from '../../styles/color';
 import {UseLikedMovie} from '../../useHooks/movie';
+import {__navigateTo} from '../../logic/navigation';
+import {SCREEN_NAMES} from '../../constants/auth/navigation';
 
-const MovieOverView = ({movie}) => {
+const MovieOverView = ({movie, navigation}) => {
   const {isMovieLiked} = UseLikedMovie({movie});
-
-  console.log('isMovieLiked:', isMovieLiked);
 
   const LeftContent = props => (
     <Avatar.Image
@@ -31,6 +31,13 @@ const MovieOverView = ({movie}) => {
         margin: 10,
       }}>
       <Card.Title
+        onPress={() =>
+          __navigateTo({
+            screenName: SCREEN_NAMES.MovieDetailsScreen.name,
+            navigation,
+            params: {movie},
+          })
+        }
         // title={movie.original_title}
         subtitle={`Release Date :${movie.release_date}`}
         left={LeftContent}
@@ -40,6 +47,13 @@ const MovieOverView = ({movie}) => {
         <Paragraph style={{color: 'gray'}}>{movie.overview}</Paragraph>
       </Card.Content>
       <Card.Cover
+        onPress={() =>
+          __navigateTo({
+            screenName: SCREEN_NAMES.MovieDetailsScreen.name,
+            navigation,
+            params: {movie},
+          })
+        }
         source={{uri: __getMovieImageUrl({imagePath: movie.poster_path})}}
       />
       <Card.Actions style={{justifyContent: 'space-between'}}>
@@ -53,7 +67,16 @@ const MovieOverView = ({movie}) => {
           color={isMovieLiked ? PRIMARY_COLOR : 'gray'}
           size={24}
         />
-        <Button color={'gray'} type="text">
+        <Button
+          onPress={() =>
+            __navigateTo({
+              screenName: SCREEN_NAMES.MovieDetailsScreen.name,
+              navigation,
+              params: {movie},
+            })
+          }
+          color={'gray'}
+          type="text">
           <Text style={{color: 'red', backgroundColor: 'gray'}}></Text>
           Details
         </Button>
